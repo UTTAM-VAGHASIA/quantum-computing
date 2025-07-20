@@ -46,7 +46,9 @@ Where:
 - Minimum entropy (0) occurs when outcome is certain
 
 **Example**: For a fair coin flip:
-$$H = -\frac{1}{2}\log_2\left(\frac{1}{2}\right) - \frac{1}{2}\log_2\left(\frac{1}{2}\right) = 1 \text{ bit}$$
+$$
+H = -\frac{1}{2}\log_2\left(\frac{1}{2}\right) - \frac{1}{2}\log_2\left(\frac{1}{2}\right) = 1 \text{ bit}
+$$
 
 ## 4. What is a qubit and how does it differ from a classical bit?
 
