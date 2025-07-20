@@ -1,4 +1,3 @@
-<script src="https://rawcdn.githack.com/oscarmorrison/md-page/master/md-page.js"></script><noscript>
 # Quantum Computing Assignment 1 - Solutions
 
 ## 1. Differentiate between Digital Computer and Quantum Computer
