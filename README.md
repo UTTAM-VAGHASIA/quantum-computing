@@ -11,7 +11,7 @@ This repository serves as a comprehensive collection of materials for studying q
 ### Current Folders
 
 - **`assignments/`** - Course assignments and homework
-  - `ASSIGNMENT_1.md` - First assignment
+  - `ASSIGNMENT_1.mmd` - First assignment
 - **`syllabus/`** - Course syllabus and curriculum information
   - `CE6016_Quantum Computing.pdf` - Official course syllabus
   - `syllabus.md` - Course Syllabus in markdown format
