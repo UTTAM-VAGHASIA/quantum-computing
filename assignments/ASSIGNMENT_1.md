@@ -112,7 +112,8 @@ $$\text{Post-measurement state: } \frac{M_m|\psi\rangle}{\sqrt{p_m}}$$
 
 ## 7. What is the Bloch sphere and how does it represent a qubit?
 
-![Bloch Sphere](https://via.placeholder.com/400x300?text=Bloch+Sphere+Diagram)
+<img width="238" height="252" alt="Bloch Sphere" src="https://github.com/user-attachments/assets/2c7547f9-f8e4-4a8d-80de-e009cf70254d" />
+
 
 The Bloch sphere is a geometric representation of qubit states as points on a unit sphere in 3D space.
 
