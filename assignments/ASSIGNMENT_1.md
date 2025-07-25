@@ -1,5 +1,8 @@
 # Assignment 1 - Quantum Computing
 
+***
+&emsp;
+
 ## 1. Differentiate between Digital Computer and Quantum Computer
 
 | Aspect | Digital Computer | Quantum Computer |
@@ -13,6 +16,10 @@
 | **Measurement** | Direct readout of bit values | Probabilistic measurement collapses state |
 | **Scalability** | Exponential resource growth | Exponential computational advantage for specific problems |
 | **Applications** | General-purpose computing | Specialized for cryptography, optimization, simulation |
+
+
+***
+&emsp;
 
 ## 2. How quantum information is used in quantum computing?
 
@@ -29,6 +36,10 @@ Quantum information leverages fundamental quantum mechanical principles to proce
 - **Quantum Communication**: Secure communication using quantum key distribution  
 - **Quantum Simulation**: Modeling complex quantum systems that classical computers can't handle
 - **Quantum Machine Learning**: Using superposition and entanglement to enhance pattern recognition
+
+
+***
+&emsp;
 
 ## 3. What is Shannon Entropy?
 
@@ -47,25 +58,39 @@ $$H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)$$
 - **Biased coin**: $p(H) = 0.9, p(T) = 0.1$ → $H(X) ≈ 0.47$ bits (less uncertainty)
 - **Certain outcome**: $p(H) = 1, p(T) = 0$ → $H(X) = 0$ bits (no uncertainty)
 
+***
+&emsp;
+
 ## 4. What is a qubit and how does it differ from a classical bit?
 
-**Classical Bit:**
-- Binary state: either 0 or 1
-- Deterministic measurement
-- Information capacity: 1 bit
+A **qubit** (quantum bit) is the fundamental unit of quantum information. Unlike classical bits, qubits can exist in a quantum superposition of both 0 and 1 states simultaneously, represented mathematically as:
 
-**Qubit (Quantum Bit):**
-- Quantum superposition: can be in state $\alpha|0\rangle + \beta|1\rangle$
-- Probabilistic measurement with outcomes governed by $|\alpha|^2$ and $|\beta|^2$
-- Information capacity: theoretically infinite (continuous parameters α and β)
+$$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$$
 
-**Key Differences:**
+where α and β are complex probability amplitudes that determine the likelihood of measuring the qubit in state |0⟩ or |1⟩.
 
-1. **State Space**: Classical bit has 2 states; qubit has infinite states on Bloch sphere
-2. **Measurement**: Classical measurement is deterministic; quantum measurement is probabilistic  
-3. **Reversibility**: Classical operations can be irreversible; quantum operations must be unitary (reversible)
-4. **Copying**: Classical bits can be copied; qubits cannot be cloned (No-cloning theorem)
+## Difference from classical bit
 
+| Aspect | Classical Bit | Qubit |
+|--------|---------------|-------|
+| **State** | Binary: either 0 or 1 | Superposition: α\|0⟩ + β\|1⟩ |
+| **State Space** | 2 possible states | Infinite states on Bloch sphere |
+| **Measurement** | Deterministic | Probabilistic (\|α\|² and \|β\|²) |
+| **Information Capacity** | 1 bit | Theoretically infinite (continuous α, β) |
+| **Operations** | Can be irreversible | Must be unitary (reversible) |
+| **Copying** | Can be copied perfectly | Cannot be cloned (No-cloning theorem) |
+| **Processing** | Sequential logic gates | Parallel quantum operations |
+
+## Key Quantum Properties
+
+- **Superposition**: Qubits can be in multiple states simultaneously
+- **Entanglement**: Qubits can be correlated in ways impossible classically
+- **Interference**: Quantum states can interfere constructively or destructively
+- **Measurement Collapse**: Observation forces the qubit into a definite state
+
+***
+&emsp;
+ 
 ## 5. Write the general mathematical form of a qubit
 
 The general mathematical form of a qubit state is:
@@ -88,38 +113,66 @@ Where $\theta \in [0, \pi]$ is the polar angle and $\phi \in [0, 2\pi)$ is the a
 $$|\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
 
 Where $\theta \in [0, \pi]$ and $\phi \in [0, 2\pi)$ are spherical coordinates on the Bloch sphere.
-
+ 
+***
+&emsp;
+ 
 ## 6. Explain the concept of measurement in qubits. What happens after a measurement?
 
-**Quantum Measurement Process:**
+### The Concept of Measurement in Qubits
 
-For a qubit in state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$:
+#### Qubit Fundamentals
+A **qubit** exists in a **superposition state**: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$, where $\alpha$ and $\beta$ are complex probability amplitudes satisfying $|\alpha|^2 + |\beta|^2 = 1$.
 
-**Before Measurement:**
-- Qubit exists in superposition
-- Contains both |0⟩ and |1⟩ components simultaneously
+#### How Measurement Works
+Unlike classical bits, measuring a qubit is **probabilistic**. The **Born rule** governs this process:
 
-**During Measurement:**
-- The measurement "forces" the qubit to "choose" either |0⟩ or |1⟩
-- Probability of measuring |0⟩: $P(0) = |\alpha|^2$ (square of amplitude)
-- Probability of measuring |1⟩: $P(1) = |\beta|^2$ (square of amplitude)
-- These probabilities always sum to 1: $|\alpha|^2 + |\beta|^2 = 1$
+- **Probability of measuring** $|0\rangle$: $P(0) = |\alpha|^2$
+- **Probability of measuring** $|1\rangle$: $P(1) = |\beta|^2$
 
-**After Measurement:**
-1. **State Collapse**: The superposition collapses to the measured eigenstate
-   - If result is 0: $|\psi\rangle \rightarrow |0\rangle$
-   - If result is 1: $|\psi\rangle \rightarrow |1\rangle$
+**Example:** For $|\psi\rangle = \frac{1}{\sqrt{3}}|0\rangle + \frac{\sqrt{2}}{3}|1\rangle$:
+- $P(0) = \frac{1}{3}$, $P(1) = \frac{2}{3}$
 
-2. **Information Loss**: Original superposition information is irretrievably lost
-3. **Subsequent Measurements**: Repeated measurements yield the same result with probability 1
+#### Mathematical Framework
+Measurement is described by **measurement operators** $M_m$:
+- **Measurement probability**: $Pr(m) = \text{Tr}(M_m^\dagger M_m \rho)$
+- **Post-measurement state**: $\rho' = \frac{M_m \rho M_m^\dagger}{\text{Tr}(M_m^\dagger M_m \rho)}$
 
-**Mathematical Formalism:**
-$$\text{Measurement outcome } m \text{ with probability } p_m = \langle\psi|M_m^\dagger M_m|\psi\rangle$$
-$$\text{Post-measurement state: } \frac{M_m|\psi\rangle}{\sqrt{p_m}}$$
+#### Types of Measurements
+1. **Projective Measurements**: Use projection operators $P$ where $P = P^\dagger$ and $P^2 = P$
+2. **POVMs**: Use positive operators $E_m$ where $\sum_m E_m = I$, allowing for more general measurements including weak measurements
 
+### What Happens After Measurement?
+
+#### Wavefunction Collapse
+Measurement causes **irreversible collapse** of the quantum state:
+
+1. **Before**: Qubit in superposition $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$
+2. **After**: Qubit becomes exactly the measured state ($|0\rangle$ or $|1\rangle$)
+
+#### Key Consequences
+- **Information Loss**: Original amplitudes $\alpha$ and $\beta$ are **lost forever**
+- **State Alteration**: The measurement fundamentally changes the quantum system
+- **Irreversibility**: Cannot recover the pre-measurement superposition state
+
+#### Practical Implications
+- **Single measurement limitation**: Cannot determine original $\alpha$ and $\beta$ from one measurement
+- **Quantum information destruction**: The act of measurement destroys quantum information
+- **Classical outcome**: Always get a definite classical result (0 or 1)
+
+### Example:
+
+Think of a spinning coin in the air - it's neither heads nor tails but a superposition of both. The moment you catch it (measure), it becomes definitively heads or tails. The "spinning state" is gone forever, and you can't tell how fast it was spinning or its exact orientation before you caught it.
+
+**Summary**: Qubit measurement is a probabilistic process governed by quantum amplitudes that irreversibly collapses superposition states into classical outcomes, destroying the original quantum information in the process.
+ 
+***
+&emsp;
+ 
 ## 7. What is the Bloch sphere and how does it represent a qubit?
 
-<img width="238" height="252" alt="Bloch Sphere" src="https://github.com/user-attachments/assets/2c7547f9-f8e4-4a8d-80de-e009cf70254d" />
+![Bloch Sphere](https://cdn.mathpix.com/snip/images/npBLHRCyBL-OGDKyk9mLKxP4pV9wPqq9yWMBHLTwGHs.original.fullsize.png)
+
 
 
 The Bloch sphere is a geometric representation of qubit states as points on a unit sphere in 3D space.
@@ -144,7 +197,10 @@ $$|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left
 - Mixed states lie inside the sphere
 - Antipodal points represent orthogonal states
 - Great circles represent continuous quantum operations
-
+ 
+***
+&emsp;
+ 
 ## 8. What is the Hilbert space dimension of a system of n qubits?
 
 The Hilbert space dimension of an n-qubit system is:
@@ -165,54 +221,101 @@ $$\text{Dimension} = 2^n$$
 **Computational Basis:**
 For n qubits, the computational basis consists of $2^n$ basis states:
 $$\{|00...0\rangle, |00...1\rangle, |00...10\rangle, \ldots, |11...1\rangle\}$$
-
+ 
+***
+&emsp;
+ 
 ## 9. Explain the tensor product and how it applies to multiple qubits
 
 **Tensor Product Definition:**
-The tensor product (⊗) combines separate quantum systems into a composite system.
+The tensor product (⊗) mathematically combines separate quantum systems into a single composite system. It preserves all information about individual subsystems while creating new possibilities for entanglement and correlation.
 
 **For Vectors:**
-If $|a\rangle = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix}$ and $|b\rangle = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}$, then:
+Given two single-qubit states represented as column vectors:
+$$|a\rangle = \begin{pmatrix} a_1 \\ a_2 \end{pmatrix} \text{ and } |b\rangle = \begin{pmatrix} b_1 \\ b_2 \end{pmatrix}$$
 
+Their tensor product creates a four-dimensional vector:
 $$|a\rangle \otimes |b\rangle = \begin{pmatrix} a_1 b_1 \\ a_1 b_2 \\ a_2 b_1 \\ a_2 b_2 \end{pmatrix}$$
 
-**Multiple Qubit Systems:**
-For qubits $|\psi_1\rangle = \alpha_1|0\rangle + \beta_1|1\rangle$ and $|\psi_2\rangle = \alpha_2|0\rangle + \beta_2|1\rangle$:
+This expansion follows the Kronecker product rule, where each element of the first vector multiplies the entire second vector.
 
+**Multiple Qubit Systems:**
+For two arbitrary qubits in superposition:
+- $|\psi_1\rangle = \alpha_1|0\rangle + \beta_1|1\rangle$ (first qubit)
+- $|\psi_2\rangle = \alpha_2|0\rangle + \beta_2|1\rangle$ (second qubit)
+
+Their tensor product expands to:
 $$|\psi_1\rangle \otimes |\psi_2\rangle = \alpha_1\alpha_2|00\rangle + \alpha_1\beta_2|01\rangle + \beta_1\alpha_2|10\rangle + \beta_1\beta_2|11\rangle$$
 
-**Properties:**
-1. **Bilinearity**: $(a|u\rangle + b|v\rangle) \otimes |w\rangle = a|u\rangle \otimes |w\rangle + b|v\rangle \otimes |w\rangle$
-2. **Associativity**: $(|a\rangle \otimes |b\rangle) \otimes |c\rangle = |a\rangle \otimes (|b\rangle \otimes |c\rangle)$
-3. **Distributivity**: Distributes over addition
+This creates a four-dimensional Hilbert space where each computational basis state corresponds to a specific combination of individual qubit states.
+
+**Essential Properties:**
+1. **Bilinearity**: The tensor product is linear in each argument:
+   $$(a|u\rangle + b|v\rangle) \otimes |w\rangle = a(|u\rangle \otimes |w\rangle) + b(|v\rangle \otimes |w\rangle)$$
+
+2. **Associativity**: Grouping doesn't matter for multiple systems:
+   $$(|a\rangle \otimes |b\rangle) \otimes |c\rangle = |a\rangle \otimes (|b\rangle \otimes |c\rangle) = |a\rangle \otimes |b\rangle \otimes |c\rangle$$
+
+3. **Non-commutativity**: Order matters in quantum systems:
+   $$|a\rangle \otimes |b\rangle \neq |b\rangle \otimes |a\rangle$$ (in general)
+
+4. **Dimension scaling**: n qubits create a $2^n$-dimensional Hilbert space
 
 **Notation Shortcuts:**
+The tensor product symbol is often omitted for brevity:
 - $|a\rangle \otimes |b\rangle = |a\rangle|b\rangle = |ab\rangle$
 - $|0\rangle \otimes |1\rangle = |01\rangle$
+- Three qubits: $|0\rangle \otimes |1\rangle \otimes |0\rangle = |010\rangle$
 
+**Practical Applications:**
+The tensor product enables quantum algorithms by allowing operations on multiple qubits simultaneously, creating entangled states impossible to describe as simple products of individual qubits, and providing the mathematical framework for quantum parallelism where n qubits can represent $2^n$ classical states simultaneously in superposition.
+ 
+***
+&emsp;
+ 
 ## 10. Define a vector space in the context of quantum computing
 
-A **vector space** (or linear space) V over a field F is a set equipped with two operations that satisfy specific axioms:
+In quantum computing, a **vector space** is the mathematical framework that describes the set of all possible states a quantum system can occupy. It's a stage where the drama of quantum mechanics unfolds.
 
-**Operations:**
-1. **Vector Addition**: $+: V \times V \rightarrow V$
-2. **Scalar Multiplication**: $\cdot: F \times V \rightarrow V$
+Specifically, it's a **complex vector space**, as quantum states are represented by vectors with complex number entries.
 
-**In Quantum Computing Context:**
-- **Vectors**: Quantum states represented as complex vectors
-- **Field**: Complex numbers $\mathbb{C}$
-- **Vector Space**: Space of all possible quantum states
+***
 
-**Examples:**
-- Single qubit space: $\mathbb{C}^2$ spanned by $\{|0\rangle, |1\rangle\}$
-- n-qubit space: $\mathbb{C}^{2^n}$ spanned by computational basis states
+### The Core Components
 
-**Physical Interpretation:**
-- Vectors represent quantum states
-- Linear combinations represent superposition
-- Inner products define probability amplitudes
-- Unitary transformations preserve vector space structure
+For a set $V$ to be a vector space used in quantum computing, it must be defined over the field of complex numbers $\mathbb{C}$ and support two fundamental operations:
 
+1.  **Vector Addition:** You can add any two quantum states (vectors, or **kets** like $|\psi\rangle$ and $|\phi\rangle$) to get another valid quantum state within the same space: $|\chi\rangle = |\psi\rangle + |\phi\rangle$. This is the mathematical basis for the **superposition principle**.
+2.  **Scalar Multiplication:** You can multiply any quantum state $|\psi\rangle$ by a complex number $\alpha \in \mathbb{C}$ to get a new valid state: $|\phi\rangle = \alpha|\psi\rangle$. The scalar $\alpha$ acts as a "weight" or probability amplitude for that state in a superposition.
+
+These operations must satisfy a list of axioms (like commutativity and associativity) that ensure the space is mathematically consistent.
+
+***
+
+### Key Examples
+
+* **A Single Qubit ($\mathbb{C}^2$):** The state of a single qubit is described by a vector in the two-dimensional complex vector space, $\mathbb{C}^2$. This space is spanned by two basis vectors, the **computational basis states**:
+    $$
+    |0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \quad \text{and} \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+    $$
+    Any state of the qubit is a linear combination (superposition) of these basis states: $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$.
+
+* **An n-Qubit System ($\mathbb{C}^{2^n}$):** The state of an n-qubit system lives in a much larger, $2^n$-dimensional complex vector space. This space is formed by the tensor product of the individual qubit spaces. For example, a 2-qubit system is described by a vector in $\mathbb{C}^4$, spanned by the four basis states: $\{|00\rangle, |01\rangle, |10\rangle, |11\rangle\}$.
+
+***
+
+### Physical Interpretation and Significance
+
+The vector space structure is not just mathematical formalism; it's deeply tied to the physics of quantum systems.
+
+* **State Representation:** Vectors (kets) directly represent the possible states of a quantum system.
+* **Superposition:** The ability to add vectors (linear combinations) mathematically represents the physical phenomenon of superposition.
+* **Measurement:** An **inner product** is defined on the space, allowing us to calculate the probability of one state collapsing to another upon measurement. The probability of measuring state $|\phi\rangle$ from a system in state $|\psi\rangle$ is given by $|\langle\phi|\psi\rangle|^2$.
+* **Quantum Evolution:** Quantum operations (gates) are **unitary transformations** on this vector space. These are essentially rotations of the state vector, evolving it to a new state while preserving its length (i.e., conserving probability).
+ 
+***
+&emsp;
+ 
 ## 11. What are the axioms of a vector space?
 
 A vector space V over field F must satisfy eight axioms:
@@ -225,15 +328,18 @@ A vector space V over field F must satisfy eight axioms:
 5. **Inverse Element**: $\forall v \in V, \exists (-v) \in V$ such that $v + (-v) = 0$
 
 **Scalar Multiplication Axioms:**
-6. **Closure**: $\forall a \in F, v \in V: av \in V$
-7. **Associativity**: $\forall a, b \in F, v \in V: a(bv) = (ab)v$
-8. **Distributivity**: 
+1. **Closure**: $\forall a \in F, v \in V: av \in V$
+2. **Associativity**: $\forall a, b \in F, v \in V: a(bv) = (ab)v$
+3. **Distributivity**: 
    - $\forall a \in F, u, v \in V: a(u + v) = au + av$
    - $\forall a, b \in F, v \in V: (a + b)v = av + bv$
 
 **Additional Property:**
 - **Multiplicative Identity**: $\forall v \in V: 1v = v$ where 1 is the multiplicative identity in F
-
+ 
+***
+&emsp;
+ 
 ## 12. What is meant by a linear combination of quantum states?
 
 A **linear combination** of quantum states is an expression of the form:
@@ -260,7 +366,10 @@ $$|\psi\rangle = \alpha|0\rangle + \beta|1\rangle \text{ where } |\alpha|^2 + |\
 
 **Physical Interpretation:**
 Linear combinations represent quantum superposition, enabling quantum parallelism and interference effects crucial for quantum algorithms.
-
+ 
+***
+&emsp;
+ 
 ## 13. Define a Hilbert space. What are its essential properties?
 
 A **Hilbert space** H is a complete inner product space - a vector space equipped with an inner product that is complete with respect to the norm induced by the inner product.
@@ -293,7 +402,10 @@ H is a vector space over $\mathbb{C}$ with inner product $\langle \cdot, \cdot \
 - Quantum states are unit vectors in Hilbert space
 - Observable measurements correspond to orthogonal projections
 - Time evolution is unitary (preserves inner products)
-
+ 
+***
+&emsp;
+ 
 ## 14. What is a spanning set in a vector space?
 
 A **spanning set** S of a vector space V is a subset of V such that every vector in V can be expressed as a linear combination of vectors in S.
@@ -318,7 +430,10 @@ $$\text{span}(S) = \left\{\sum_{i=1}^n c_i v_i : n \in \mathbb{N}, c_i \in \math
 
 **Key Insight:**
 Any quantum state in the space can be written as a linear combination of spanning set vectors with appropriate coefficients.
-
+ 
+***
+&emsp;
+ 
 ## 15. Explain why the spanning set of a vector space is not unique
 
 The spanning set is **not unique** because multiple different sets of vectors can generate the same vector space through linear combinations.
@@ -351,34 +466,47 @@ All three sets span $\mathbb{C}^2$ but are different sets.
 - Choice of spanning set affects computational efficiency
 - Some bases (like computational basis) are more natural for certain problems
 - Quantum algorithms may prefer specific basis representations
-
+ 
+***
+&emsp;
+ 
 ## 16. Define the inner product between two quantum states
 
-The **inner product** between two quantum states $|\psi\rangle$ and $|\phi\rangle$ is:
+The **inner product** is a fundamental mathematical operation in quantum mechanics that quantifies the "overlap" or similarity between two quantum states, such as $|\psi\rangle$ and $|\phi\rangle$. It's a generalization of the vector dot product to complex vector spaces and is denoted using bra-ket notation as $\langle\psi|\phi\rangle$.
+
+The calculation involves multiplying the Hermitian conjugate of the first state (the "bra" $\langle\psi|$) with the second state (the "ket" $|\phi\rangle$):
 
 $$\langle\psi|\phi\rangle = \sum_i \psi_i^* \phi_i$$
 
-Where $\psi_i^*$ is the complex conjugate of the i-th component of $|\psi\rangle$.
+Where $\psi_i^*$ is the complex conjugate of the $i$-th component of the state vector $|\psi\rangle$. The result is a single complex number.
 
-**Properties:**
-1. **Conjugate Symmetry**: $\langle\psi|\phi\rangle = \langle\phi|\psi\rangle^*$
-2. **Linearity in Second Argument**: $\langle\psi|a\phi_1 + b\phi_2\rangle = a\langle\psi|\phi_1\rangle + b\langle\psi|\phi_2\rangle$
-3. **Positive Definiteness**: $\langle\psi|\psi\rangle \geq 0$ with equality iff $|\psi\rangle = 0$
+**Key Properties:**
 
-**Physical Interpretations:**
-- **Probability Amplitude**: $\langle\phi|\psi\rangle$ gives amplitude for measuring $|\psi\rangle$ in state $|\phi\rangle$
-- **Transition Probability**: $|\langle\phi|\psi\rangle|^2$ is probability of transition
-- **Orthogonality**: $\langle\psi|\phi\rangle = 0$ means states are orthogonal (distinguishable)
+1.  **Conjugate Symmetry**: Swapping the order of the states results in the complex conjugate of the original inner product: $\langle\psi|\phi\rangle = \langle\phi|\psi\rangle^*$.
+2.  **Linearity**: The inner product is linear in its second argument (the ket) and anti-linear in its first argument (the bra).
+3.  **Positive Definiteness**: The inner product of any state with itself yields a non-negative real number, which is the square of its norm: $\langle\psi|\psi\rangle = \|\psi\|^2 \geq 0$. For any **normalized** quantum state, which is a requirement for physical states, this value is exactly 1.
+
+**Physical Significance:**
+
+- **Probability Amplitude**: The complex number $\langle\phi|\psi\rangle$ is the **probability amplitude**. It represents the likelihood that a system prepared in state $|\psi\rangle$ will be measured to be in state $|\phi\rangle$.
+- **Measurement Probability**: According to the Born rule, the actual probability of this measurement outcome is the squared magnitude of the amplitude: $P(\psi \rightarrow \phi) = |\langle\phi|\psi\rangle|^2$.
+- **Orthogonality**: If the inner product is zero, $\langle\psi|\phi\rangle = 0$, the states are **orthogonal**. This signifies that they are perfectly distinguishable; if a system is in state $|\psi\rangle$, there is a zero probability of ever measuring it to be in state $|\phi\rangle$.
 
 **Examples:**
 
-**Computational Basis:**
+- **Computational Basis States:**
+The standard computational basis states, $|0\rangle$ and $|1\rangle$, are defined to be **orthonormal** (orthogonal and normalized).
+
 $$\langle 0|0\rangle = 1, \quad \langle 1|1\rangle = 1, \quad \langle 0|1\rangle = 0$$
 
-**General States:**
-For $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ and $|\phi\rangle = \gamma|0\rangle + \delta|1\rangle$:
-$$\langle\psi|\phi\rangle = \alpha^*\gamma + \beta^*\delta$$
+- **General Qubit States:**
+For two arbitrary single-qubit states, $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$ and $|\phi\rangle = \gamma|0\rangle + \delta|1\rangle$, their inner product is calculated as:
 
+$$\langle\psi|\phi\rangle = \alpha^*\gamma + \beta^*\delta$$
+ 
+***
+&emsp;
+ 
 ## 17. Define orthonormality in a vector space
 
 **Orthonormality** combines two concepts:
@@ -413,8 +541,18 @@ $$\{|+\rangle, |-\rangle\} \text{ where } |±\rangle = \frac{1}{\sqrt{2}}(|0\ran
 - Simplifies calculations (orthogonal projection formulas)
 - Numerically stable
 - Physical interpretation (mutually exclusive measurement outcomes)
-
+ 
+***
+&emsp;
+ 
 ## 18. What is the purpose of the Gram-Schmidt process?
+
+> Yaar, Santosh Sir ne bola tha, "Nahi lena panga,"
+> "Yeh topic laana exam mein nahi hai changa."
+> Lekin agar yeh sawaal exam mein aaya, toh main kya karunga?
+> Ruk, main hi batata hoon... Sir ko hi Uthake phek dunga!
+
+&emsp;
 
 The **Gram-Schmidt process** converts any linearly independent set of vectors into an orthonormal set that spans the same subspace.
 
@@ -444,42 +582,83 @@ $$|e_k\rangle = \frac{|u_k\rangle}{||u_k||}$$
 - Preserves span of original vectors
 - Produces numerically stable orthonormal basis
 - Enables efficient quantum state manipulation
-
+ 
+***
+&emsp;
+ 
 ## 19. Apply Gram-Schmidt to the vectors (1, 1) and (1, 0)
 
-**Given vectors:**
+### **Given Vectors**
+We are given two vectors, $|v_1\rangle$ and $|v_2\rangle$, in a 2-dimensional space.
 $$|v_1\rangle = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad |v_2\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
+The goal is to transform this set of vectors into an **orthonormal set**, $\{|e_1\rangle, |e_2\rangle\}$.
 
-**Step 1: First orthogonal vector**
+### **Step 1: Find the First Orthogonal Vector**
+The first vector in our new orthogonal set, $|u_1\rangle$, is simply the first vector from our original set, $|v_1\rangle$.
 $$|u_1\rangle = |v_1\rangle = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
 
-**Step 2: Second orthogonal vector**
-Compute projection of $|v_2\rangle$ onto $|u_1\rangle$:
-$$\text{proj}_{u_1}|v_2\rangle = \frac{\langle u_1|v_2\rangle}{\langle u_1|u_1\rangle} |u_1\rangle$$
+### **Step 2: Find the Second Orthogonal Vector**
+The second orthogonal vector, $|u_2\rangle$, is found by subtracting the projection of $|v_2\rangle$ onto $|u_1\rangle$ from $|v_2\rangle$. This removes any component of $|v_2\rangle$ that is parallel to $|u_1\rangle$, leaving only the orthogonal part.
 
-Calculate inner products:
-$$\langle u_1|v_2\rangle = 1 \cdot 1 + 1 \cdot 0 = 1$$
-$$\langle u_1|u_1\rangle = 1^2 + 1^2 = 2$$
+The formula is:
+$$|u_2\rangle = |v_2\rangle - \text{proj}_{u_1}|v_2\rangle$$
+First, we must compute the projection of $|v_2\rangle$ onto $|u_1\rangle$:
+$$\langle\text{proj}_{u_1}|v_2\rangle = \frac{\langle u_1|v_2\rangle}{\langle u_1|u_1\rangle} |u_1\rangle$$
+Let's calculate the required inner products (dot products):
 
-Therefore:
-$$\text{proj}_{u_1}|v_2\rangle = \frac{1}{2} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix}$$
+1.  **Numerator:** $\langle u_1|v_2\rangle$
+    $$
+    \langle u_1|v_2\rangle = (1)(1) + (1)(0) = 1 + 0 = 1
+    $$
+2.  **Denominator:** $\langle u_1|u_1\rangle$
+    $$
+    \langle u_1|u_1\rangle = (1)(1) + (1)(1) = 1 + 1 = 2
+    $$
 
-$$|u_2\rangle = |v_2\rangle - \text{proj}_{u_1}|v_2\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix} = \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix}$$
+Now, substitute these values back into the projection formula:
+$$\langle\text{proj}_{u_1}|v_2\rangle = \frac{1}{2} |u_1\rangle = \frac{1}{2} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix}$$
+Finally, calculate $|u_2\rangle$ by subtracting this projection from $|v_2\rangle$:
+$$|u_2\rangle = |v_2\rangle - \langle\text{proj}_{u_1}|v_2\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix} = \begin{pmatrix} 1 - 1/2 \\ 0 - 1/2 \end{pmatrix} = \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix}$$
+Our set of **orthogonal vectors** is $\{|u_1\rangle, |u_2\rangle\}$:
+$$|u_1\rangle = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad |u_2\rangle = \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix}$$
 
-**Step 3: Normalize vectors**
-$$||u_1|| = \sqrt{1^2 + 1^2} = \sqrt{2}$$
-$$||u_2|| = \sqrt{(1/2)^2 + (-1/2)^2} = \sqrt{1/2} = \frac{1}{\sqrt{2}}$$
 
-**Final orthonormal vectors:**
-$$|e_1\rangle = \frac{|u_1\rangle}{||u_1||} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}$$
+### **Step 3: Normalize the Orthogonal Vectors**
+To get an orthonormal basis, we must normalize each orthogonal vector by dividing it by its magnitude (norm). An orthonormal vector $|e_i\rangle$ is given by $|e_i\rangle = \frac{|u_i\rangle}{||u_i||}$.
 
-$$|e_2\rangle = \frac{|u_2\rangle}{||u_2||} = \sqrt{2} \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
+1.  **Normalize $|u_1\rangle$ to get $|e_1\rangle$**:
+    First, find the norm of $|u_1\rangle$:
+    $$
+    ||u_1|| = \sqrt{\langle u_1|u_1\rangle} = \sqrt{1^2 + 1^2} = \sqrt{2}
+    $$
+    Now, create the unit vector $|e_1\rangle$:
+    $$
+    |e_1\rangle = \frac{|u_1\rangle}{||u_1||} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1/\sqrt{2} \\ 1/\sqrt{2} \end{pmatrix}
+    $$
+2.  **Normalize $|u_2\rangle$ to get $|e_2\rangle$**:
+    First, find the norm of $|u_2\rangle$:
+    $$
+    ||u_2|| = \sqrt{\langle u_2|u_2\rangle} = \sqrt{\left(\frac{1}{2}\right)^2 + \left(-\frac{1}{2}\right)^2} = \sqrt{\frac{1}{4} + \frac{1}{4}} = \sqrt{\frac{2}{4}} = \sqrt{\frac{1}{2}} = \frac{1}{\sqrt{2}}
+    $$
+    Now, create the unit vector $|e_2\rangle$:
+    $$
+    |e_2\rangle = \frac{|u_2\rangle}{||u_2||} = \frac{1}{1/\sqrt{2}} \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix} = \sqrt{2} \begin{pmatrix} 1/2 \\ -1/2 \end{pmatrix} = \begin{pmatrix} \sqrt{2}/2 \\ -\sqrt{2}/2 \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}
+    $$
 
-**Verification:**
-$\langle e_1|e_2\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}} + \frac{1}{\sqrt{2}} \cdot \frac{-1}{\sqrt{2}} = \frac{1}{2} - \frac{1}{2} = 0$
 
-✓ Vectors are orthonormal
+### **Final Orthonormal Vectors**
+The resulting orthonormal basis vectors are:
+$$|e_1\rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \quad |e_2\rangle = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 \\ -1 \end{pmatrix}$$
 
+
+### **Verification**
+To verify that the vectors are orthonormal, we check that their inner product is zero.
+$$\langle e_1|e_2\rangle = \left(\frac{1}{\sqrt{2}}\right)\left(\frac{1}{\sqrt{2}}\right) + \left(\frac{1}{\sqrt{2}}\right)\left(-\frac{1}{\sqrt{2}}\right) = \frac{1}{2} - \frac{1}{2} = 0$$
+Since their inner product is 0, the vectors are orthogonal. Since they are also unit vectors, the set is **orthonormal**.
+ 
+***
+&emsp;
+ 
 ## 20. What is the difference between orthogonalization and normalization?
 
 | Aspect | Orthogonalization | Normalization |
@@ -492,23 +671,10 @@ $\langle e_1|e_2\rangle = \frac{1}{\sqrt{2}} \cdot \frac{1}{\sqrt{2}} + \frac{1}
 | **Effect on Length** | Generally changes length | Always results in unit length |
 | **Independence** | Can be done without normalization | Independent of orthogonalization |
 | **Geometric Meaning** | Eliminates angular correlations | Standardizes magnitude |
-
-**Example Illustration:**
-Starting with $|v\rangle = \begin{pmatrix} 3 \\ 4 \end{pmatrix}$:
-
-**Normalization only:**
-$$||v|| = \sqrt{3^2 + 4^2} = 5$$
-$$|v_{\text{norm}}\rangle = \frac{1}{5}\begin{pmatrix} 3 \\ 4 \end{pmatrix}$$
-Direction preserved, length = 1
-
-**Combined Process in Gram-Schmidt:**
-1. **Orthogonalization**: Adjust direction to be perpendicular to previous vectors
-2. **Normalization**: Scale resulting vector to unit length
-
-**Physical Significance:**
-- **Orthogonalization**: Ensures quantum states are distinguishable
-- **Normalization**: Ensures probability conservation ($\sum |c_i|^2 = 1$)
-
+ 
+***
+&emsp;
+ 
 ## 21. What is the ket notation |ψ⟩ and bra notation ⟨ψ|?
 
 **Dirac Notation** (Bra-Ket notation) is a standard notation for describing quantum states and operations, introduced by Paul Dirac.
@@ -529,28 +695,29 @@ $$\langle\psi| = (\alpha^* \quad \beta^*) = \alpha^*\langle 0| + \beta^*\langle 
 
 **Combined Operations:**
 
-**Inner Product (Bracket):**
+- **Inner Product (Bracket):**
 $$\langle\phi|\psi\rangle = \text{complex number (probability amplitude)}$$
 
-**Outer Product (Ket-Bra):**
-$|\psi\rangle\langle\phi| = \text{operator/matrix}$
+- **Outer Product (Ket-Bra):**
+$$|\psi\rangle\langle\phi| = \text{operator/matrix}$$
 
 **Key Properties:**
 
-**1. Conjugate Relationship:**
-$\langle\psi| = (|\psi\rangle)^\dagger$
-Where $\dagger$ denotes Hermitian conjugate (complex conjugate transpose)
+1. **Conjugate Relationship**:
+$$\langle\psi| = (|\psi\rangle)^\dagger$$
+&emsp; &emsp; &emsp; Where $\dagger$ denotes Hermitian conjugate (complex conjugate transpose)
 
-**2. Normalization:**
-$\langle\psi|\psi\rangle = |\alpha|^2 + |\beta|^2 = 1$
+2. **Normalization:**
+$$\langle\psi|\psi\rangle = |\alpha|^2 + |\beta|^2 = 1$$
 
-**3. Linearity:**
-$\langle\psi|(a|\phi_1\rangle + b|\phi_2\rangle) = a\langle\psi|\phi_1\rangle + b\langle\psi|\phi_2\rangle$
+3. **Linearity:**
+$$\langle\psi|(a|\phi_1\rangle + b|\phi_2\rangle) = a\langle\psi|\phi_1\rangle + b\langle\psi|\phi_2\rangle$$
 
 **Examples:**
 
 **Computational Basis:**
 - $|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, $\langle 0| = (1 \quad 0)$
+&emsp;
 - $|1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}$, $\langle 1| = (0 \quad 1)$
 
 **Superposition State:**
