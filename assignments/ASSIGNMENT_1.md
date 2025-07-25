@@ -24,10 +24,11 @@ Quantum information leverages fundamental quantum mechanical principles to proce
 - **Interference**: Quantum amplitudes can interfere constructively or destructively to enhance correct solutions
 
 **Applications in Quantum Computing:**
-- **Quantum Algorithms**: Algorithms like Shor's and Grover's exploit quantum information properties for exponential speedups
-- **Quantum Communication**: Secure communication protocols using quantum key distribution
-- **Quantum Simulation**: Modeling quantum systems that are intractable for classical computers
-- **Quantum Machine Learning**: Using quantum superposition and entanglement for enhanced pattern recognition
+
+- **Quantum Algorithms**: Algorithms like Shor's (factoring) and Grover's (search) use quantum properties for exponential speedups
+- **Quantum Communication**: Secure communication using quantum key distribution  
+- **Quantum Simulation**: Modeling complex quantum systems that classical computers can't handle
+- **Quantum Machine Learning**: Using superposition and entanglement to enhance pattern recognition
 
 ## 3. What is Shannon Entropy?
 
@@ -41,8 +42,10 @@ $$H(X) = -\sum_{i} p(x_i) \log_2 p(x_i)$$
 - Maximum entropy occurs for uniform distribution
 - Represents average number of bits needed to encode information
 
-**Example**: For a fair coin flip with $p(H) = p(T) = 0.5$:
-$$H(X) = -[0.5 \log_2(0.5) + 0.5 \log_2(0.5)] = 1 \text{ bit}$$
+**Examples:**
+- **Fair coin flip**: $p(H) = p(T) = 0.5$ → $H(X) = 1$ bit (maximum uncertainty)
+- **Biased coin**: $p(H) = 0.9, p(T) = 0.1$ → $H(X) ≈ 0.47$ bits (less uncertainty)
+- **Certain outcome**: $p(H) = 1, p(T) = 0$ → $H(X) = 0$ bits (no uncertainty)
 
 ## 4. What is a qubit and how does it differ from a classical bit?
 
@@ -57,8 +60,9 @@ $$H(X) = -[0.5 \log_2(0.5) + 0.5 \log_2(0.5)] = 1 \text{ bit}$$
 - Information capacity: theoretically infinite (continuous parameters α and β)
 
 **Key Differences:**
+
 1. **State Space**: Classical bit has 2 states; qubit has infinite states on Bloch sphere
-2. **Measurement**: Classical measurement is deterministic; quantum measurement is probabilistic
+2. **Measurement**: Classical measurement is deterministic; quantum measurement is probabilistic  
 3. **Reversibility**: Classical operations can be irreversible; quantum operations must be unitary (reversible)
 4. **Copying**: Classical bits can be copied; qubits cannot be cloned (No-cloning theorem)
 
@@ -78,6 +82,8 @@ Where:
 **Polar Form:**
 $$|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left(\frac{\theta}{2}\right)|1\rangle$$
 
+Where $\theta \in [0, \pi]$ is the polar angle and $\phi \in [0, 2\pi)$ is the azimuthal angle.
+
 **Matrix Form:**
 $$|\psi\rangle = \begin{pmatrix} \alpha \\ \beta \end{pmatrix}$$
 
@@ -94,9 +100,10 @@ For a qubit in state $|\psi\rangle = \alpha|0\rangle + \beta|1\rangle$:
 - Contains both |0⟩ and |1⟩ components simultaneously
 
 **During Measurement:**
-- Measurement operators project the state onto computational basis
-- Probability of measuring |0⟩: $P(0) = |\alpha|^2$
-- Probability of measuring |1⟩: $P(1) = |\beta|^2$
+- The measurement "forces" the qubit to "choose" either |0⟩ or |1⟩
+- Probability of measuring |0⟩: $P(0) = |\alpha|^2$ (square of amplitude)
+- Probability of measuring |1⟩: $P(1) = |\beta|^2$ (square of amplitude)
+- These probabilities always sum to 1: $|\alpha|^2 + |\beta|^2 = 1$
 
 **After Measurement:**
 1. **State Collapse**: The superposition collapses to the measured eigenstate
@@ -126,10 +133,11 @@ $$|\psi\rangle = \cos\left(\frac{\theta}{2}\right)|0\rangle + e^{i\phi}\sin\left
 - **φ**: Azimuthal angle (0 ≤ φ < 2π)
 
 **Key Points:**
-- **North Pole** (θ=0): |0⟩ state
-- **South Pole** (θ=π): |1⟩ state
-- **Equator**: Superposition states with equal probability amplitudes
-- **Interior**: No physical meaning (non-normalized states)
+- **North Pole** (θ=0): |0⟩ state (classical "0")
+- **South Pole** (θ=π): |1⟩ state (classical "1")  
+- **Equator**: Equal superposition states like |+⟩ and |-⟩
+- **Any point on surface**: Valid qubit state
+- **Interior**: Invalid (non-normalized states)
 
 **Properties:**
 - Pure states lie on the surface
